@@ -1,0 +1,73 @@
+{
+  "name": "@picahq/toolkit",
+  "version": "0.1.0",
+  "description": "Pica tools for the Vercel AI SDK",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist/**",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build:clean": "rm -rf dist && npm run build",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "example:basic": "tsx examples/basic-agent.ts",
+    "example:knowledge": "tsx examples/knowledge-agent.ts",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build:clean"
+  },
+  "keywords": [
+    "pica",
+    "ai",
+    "vercel",
+    "tool",
+    "integration"
+  ],
+  "homepage": "https://picaos.com",
+  "bugs": {
+    "url": "https://github.com/picahq/toolkit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/picahq/toolkit.git"
+  },
+  "license": "GPL-3.0",
+  "author": "@picahq",
+  "dependencies": {
+    "axios": "^1.12.1",
+    "chalk": "^4.1.2",
+    "form-data": "^4.0.4"
+  },
+  "peerDependencies": {
+    "@ai-sdk/openai": "^2.0.30",
+    "ai": "^5.0.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@ai-sdk/openai": "^2.0.30",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^24.3.3",
+    "ai": "^5.0.44",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.6.0",
+    "zod": "^4.1.8"
+  }
+}
