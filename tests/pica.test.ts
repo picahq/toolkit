@@ -107,42 +107,42 @@ describe("Pica", () => {
   });
 
   describe("getSystemPrompt", () => {
-    it("should return a system prompt", async () => {
+    it("should return a system prompt", () => {
       const pica = new Pica(mockSecret);
-      const prompt = await pica.getSystemPrompt();
+      const prompt = pica.getSystemPrompt();
 
       expect(typeof prompt).toBe("string");
       expect(prompt).toContain("PICA: INTEGRATION ASSISTANT");
     });
 
-    it("should include listPicaConnections tool information in prompt when using wildcard connectors", async () => {
+    it("should include listPicaConnections tool information in prompt when using wildcard connectors", () => {
       const pica = new Pica(mockSecret, { connectors: ["*"] });
-      const prompt = await pica.getSystemPrompt();
+      const prompt = pica.getSystemPrompt();
 
       expect(prompt).toContain("listPicaConnections");
     });
 
-    it("should handle specific connectors in prompt", async () => {
+    it("should handle specific connectors in prompt", () => {
       const pica = new Pica(mockSecret, {
         connectors: ["test::gmail::default::123"]
       });
-      const prompt = await pica.getSystemPrompt();
+      const prompt = pica.getSystemPrompt();
 
       expect(prompt).toContain("Connected integrations");
       expect(prompt).toContain("gmail");
     });
 
-    it("should return knowledge agent prompt when knowledgeAgent is true", async () => {
+    it("should return knowledge agent prompt when knowledgeAgent is true", () => {
       const pica = new Pica(mockSecret, { knowledgeAgent: true });
-      const prompt = await pica.getSystemPrompt();
+      const prompt = pica.getSystemPrompt();
 
       expect(typeof prompt).toBe("string");
       expect(prompt).toContain("PICA: KNOWLEDGE AGENT");
     });
 
-    it("should return default prompt when knowledgeAgent is false", async () => {
+    it("should return default prompt when knowledgeAgent is false", () => {
       const pica = new Pica(mockSecret, { knowledgeAgent: false });
-      const prompt = await pica.getSystemPrompt();
+      const prompt = pica.getSystemPrompt();
 
       expect(typeof prompt).toBe("string");
       expect(prompt).toContain("PICA: INTEGRATION ASSISTANT");

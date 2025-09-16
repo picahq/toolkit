@@ -111,7 +111,7 @@ export class Pica {
   /**
    * @returns The system prompt for the Pica ToolKit
    */
-  async getSystemPrompt(): Promise<string> {
+  getSystemPrompt(): string {
     if (this.options?.knowledgeAgent) {
       return generateKnowledgeAgentSystemPrompt();
     }

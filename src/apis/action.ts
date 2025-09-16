@@ -70,6 +70,8 @@ export async function searchPlatformActions({
       return await getActionReferences(baseUrl, secret, platform, options?.actions || [], options);
     }
 
+    console.log("cleanedActions", cleanedActions);
+
     return cleanedActions;
   } catch (error) {
     throw error;
@@ -85,6 +87,8 @@ export async function searchPlatformActions({
 export function clean(actions: PlatformAction[], options?: PicaOptions): ActionReference[] {
   const permissionFilteredActions = filterByPermissions(actions, options?.permissions);
   const actionFilteredActions = filterByAllowedActions(permissionFilteredActions, options?.actions);
+
+  console.log("actionFilteredActions", actionFilteredActions);
 
   return actionFilteredActions.map(action => {
     const fullId = action.systemId;
