@@ -21,7 +21,7 @@ async function main() {
       knowledgeAgent: true
     });
 
-    const systemPrompt = pica.getSystemPrompt();
+    const systemPrompt = pica.systemPrompt;
 
     const { textStream } = streamText({
       model: openai("gpt-4.1"),

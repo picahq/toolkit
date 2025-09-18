@@ -19,7 +19,8 @@ import {
 import {
   isInitializingWithAllActions,
   parseSystemId,
-  normalizeActionId
+  normalizeActionId,
+  replaceBaseUrlInKnowledge
 } from "../utils";
 
 const SEARCH_ACTIONS_URL = "/v1/available-actions/search";
@@ -70,8 +71,6 @@ export async function searchPlatformActions({
       return await getActionReferences(baseUrl, secret, platform, options?.actions || [], options);
     }
 
-    console.log("cleanedActions", cleanedActions);
-
     return cleanedActions;
   } catch (error) {
     throw error;
@@ -87,8 +86,6 @@ export async function searchPlatformActions({
 export function clean(actions: PlatformAction[], options?: PicaOptions): ActionReference[] {
   const permissionFilteredActions = filterByPermissions(actions, options?.permissions);
   const actionFilteredActions = filterByAllowedActions(permissionFilteredActions, options?.actions);
-
-  console.log("actionFilteredActions", actionFilteredActions);
 
   return actionFilteredActions.map(action => {
     const fullId = action.systemId;
@@ -153,6 +150,7 @@ interface GetActionsKnowledgeParams {
   baseUrl: string;
   secret: string;
   systemIds: string[];
+  passthroughUrl: string;
   options?: PicaOptions;
 }
 
@@ -161,6 +159,7 @@ interface GetActionsKnowledgeParams {
  * @param baseUrl - The base URL of the Pica API
  * @param secret - The Pica API key
  * @param systemIds - The system IDs to get knowledge for
+ * @param passthroughUrl - The passthrough URL to replace baseUrl with in knowledge
  * @param options - The options for the Pica client
  * @returns The knowledge for the system IDs
  */
@@ -168,6 +167,7 @@ export async function getActionsKnowledge({
   baseUrl,
   secret,
   systemIds,
+  passthroughUrl,
   options,
 }: GetActionsKnowledgeParams): Promise<ActionsKnowledgeResponse> {
   const knowledgeMap: ActionsKnowledgeResponse = {};
@@ -187,7 +187,13 @@ export async function getActionsKnowledge({
 
       if (response.data.rows && response.data.rows.length > 0) {
         const actionKnowledge: ActionKnowledge = response.data.rows[0];
-        knowledgeMap[systemId] = actionKnowledge.knowledge;
+
+        let updatedKnowledge = actionKnowledge.knowledge;
+        if (actionKnowledge.baseUrl && updatedKnowledge) {
+          updatedKnowledge = replaceBaseUrlInKnowledge(updatedKnowledge, actionKnowledge.baseUrl, passthroughUrl);
+        }
+
+        knowledgeMap[systemId] = updatedKnowledge;
       }
     } catch (error) {
       console.error(`Error fetching knowledge for action '${systemId}':`, error);

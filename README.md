@@ -41,7 +41,7 @@ export async function POST(req: Request) {
     permissions: "read"
   });
 
-  const systemPrompt = pica.getSystemPrompt();
+  const systemPrompt = pica.systemPrompt;
 
   const result = streamText({
     model: openai("gpt-4.1"),

@@ -109,7 +109,7 @@ describe("Pica", () => {
   describe("getSystemPrompt", () => {
     it("should return a system prompt", () => {
       const pica = new Pica(mockSecret);
-      const prompt = pica.getSystemPrompt();
+      const prompt = pica.systemPrompt;
 
       expect(typeof prompt).toBe("string");
       expect(prompt).toContain("PICA: INTEGRATION ASSISTANT");
@@ -117,7 +117,7 @@ describe("Pica", () => {
 
     it("should include listPicaConnections tool information in prompt when using wildcard connectors", () => {
       const pica = new Pica(mockSecret, { connectors: ["*"] });
-      const prompt = pica.getSystemPrompt();
+      const prompt = pica.systemPrompt;
 
       expect(prompt).toContain("listPicaConnections");
     });
@@ -126,7 +126,7 @@ describe("Pica", () => {
       const pica = new Pica(mockSecret, {
         connectors: ["test::gmail::default::123"]
       });
-      const prompt = pica.getSystemPrompt();
+      const prompt = pica.systemPrompt;
 
       expect(prompt).toContain("Connected integrations");
       expect(prompt).toContain("gmail");
@@ -134,7 +134,7 @@ describe("Pica", () => {
 
     it("should return knowledge agent prompt when knowledgeAgent is true", () => {
       const pica = new Pica(mockSecret, { knowledgeAgent: true });
-      const prompt = pica.getSystemPrompt();
+      const prompt = pica.systemPrompt;
 
       expect(typeof prompt).toBe("string");
       expect(prompt).toContain("PICA: KNOWLEDGE AGENT");
@@ -142,7 +142,7 @@ describe("Pica", () => {
 
     it("should return default prompt when knowledgeAgent is false", () => {
       const pica = new Pica(mockSecret, { knowledgeAgent: false });
-      const prompt = pica.getSystemPrompt();
+      const prompt = pica.systemPrompt;
 
       expect(typeof prompt).toBe("string");
       expect(prompt).toContain("PICA: INTEGRATION ASSISTANT");

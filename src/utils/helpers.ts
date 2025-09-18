@@ -264,3 +264,42 @@ export function isInitializingWithAllActions(actions: string[] = []): boolean {
 export function pluralize(count: number, singular: string, plural?: string): string {
   return count === 1 ? singular : (plural || `${singular}s`);
 }
+
+/**
+ * Replace all instances of the original baseUrl with the passthrough URL in the knowledge string
+ * Handles both HTTP and HTTPS versions, with and without trailing slashes
+ * @param knowledge - The knowledge string to update
+ * @param originalBaseUrl - The original baseUrl to replace
+ * @param passthroughUrl - The passthrough URL to replace with
+ * @returns The updated knowledge string
+ */
+export function replaceBaseUrlInKnowledge(knowledge: string, originalBaseUrl: string, passthroughUrl: string): string {
+  if (!knowledge || !originalBaseUrl) {
+    return knowledge;
+  }
+
+  let updatedKnowledge = knowledge;
+
+  const normalizedOriginal = originalBaseUrl.replace(/\/$/, '');
+
+  const patterns = [
+    normalizedOriginal,
+    normalizedOriginal + '/',
+    normalizedOriginal.replace(/^https?:\/\//, 'http://'),
+    normalizedOriginal.replace(/^https?:\/\//, 'http://') + '/',
+    normalizedOriginal.replace(/^https?:\/\//, 'https://'),
+    normalizedOriginal.replace(/^https?:\/\//, 'https://') + '/'
+  ];
+
+  const uniquePatterns = [...new Set(patterns)];
+
+  uniquePatterns.forEach(pattern => {
+    if (pattern) {
+      const escapedPattern = pattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp(escapedPattern, 'g');
+      updatedKnowledge = updatedKnowledge.replace(regex, passthroughUrl);
+    }
+  });
+
+  return updatedKnowledge;
+}

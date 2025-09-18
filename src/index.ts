@@ -88,6 +88,17 @@ export class Pica {
     }
   }
 
+  get passthroughUrl(): string {
+    return `${this.baseUrl}/v1/passthrough`;
+  }
+
+  get systemPrompt(): string {
+    if (this.options?.knowledgeAgent) {
+      return generateKnowledgeAgentSystemPrompt();
+    }
+    return generateDefaultSystemPrompt(this.options?.connectors, this.options?.actions);
+  }
+
   private logConnectorInitialization(): void {
     if (isInitializingWithAllConnectors(this.options?.connectors)) {
       console.log(chalk.cyan(LOG_MESSAGES.ALL_CONNECTORS_ACCESS));
@@ -108,15 +119,6 @@ export class Pica {
     }
   }
 
-  /**
-   * @returns The system prompt for the Pica ToolKit
-   */
-  getSystemPrompt(): string {
-    if (this.options?.knowledgeAgent) {
-      return generateKnowledgeAgentSystemPrompt();
-    }
-    return generateDefaultSystemPrompt(this.options?.connectors, this.options?.actions);
-  }
 
   /**
    * @returns List of connected integrations
@@ -207,6 +209,7 @@ export class Pica {
           baseUrl: this.baseUrl,
           secret: this.secret,
           systemIds,
+          passthroughUrl: this.passthroughUrl,
           options: this.options?.knowledgeAgent ? { ...this.options, actions: ["*"] } : this.options
         });
 
