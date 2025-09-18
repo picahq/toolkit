@@ -58,10 +58,6 @@ export class Pica {
   private options?: PicaOptions;
 
   constructor(secret: string, options?: PicaOptions) {
-    if (!secret) {
-      throw new Error("A valid Pica API key must be provided. You can obtain your API key from the Pica dashboard: https://app.picaos.com/settings/api-keys");
-    }
-
     this.secret = secret;
     this.baseUrl = options?.serverUrl || "https://api.picaos.com";
     this.options = options;

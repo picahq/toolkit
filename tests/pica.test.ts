@@ -278,10 +278,6 @@ describe("Pica", () => {
   });
 
   describe("error handling", () => {
-    it("should throw error when secret is empty", () => {
-      expect(() => new Pica("")).toThrow("A valid Pica API key must be provided. You can obtain your API key from the Pica dashboard: https://app.picaos.com/settings/api-keys");
-    });
-
     it("should handle malformed options", () => {
       expect(() => new Pica(mockSecret, {} as PicaOptions)).not.toThrow();
     });
