@@ -64,7 +64,7 @@ export async function POST(req: Request) {
 
 After installing the SDK and integrating your platforms through the [Pica dashboard](https://app.picaos.com/connections), you can effortlessly create sophisticated AI agents to orchestrate and automate your business workflows.
 
-<img src="https://assets.picaos.com/github/toolkit-diagram.svg" style="border-radius: 5px;" alt="ToolKit Diagram">
+<img src="https://assets.picaos.com/github/toolkit-diagram.svg?v=2" style="border-radius: 5px;" alt="ToolKit Diagram">
 
 Here are some powerful examples use cases:
 
