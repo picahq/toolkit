@@ -99,6 +99,19 @@ export class Pica {
     return generateDefaultSystemPrompt(this.options?.connectors, this.options?.actions);
   }
 
+  /**
+   * Generate system prompt - optionally combine user prompt with Pica's
+   * @param userPrompt - Optional user's custom system prompt
+   * @param separator - Optional separator between prompts (default: double newline)
+   * @returns Pica's system prompt only, or combined prompt if userPrompt provided
+   */
+  generateSystemPrompt(userPrompt?: string, separator: string = '\n\n'): string {
+    if (!userPrompt) {
+      return this.systemPrompt;
+    }
+    return `${userPrompt}${separator}${this.systemPrompt}`;
+  }
+
   private logConnectorInitialization(): void {
     if (isInitializingWithAllConnectors(this.options?.connectors)) {
       console.log(chalk.cyan(LOG_MESSAGES.ALL_CONNECTORS_ACCESS));
