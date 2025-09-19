@@ -105,7 +105,8 @@ export async function executeAction({
     headers,
     isFormData,
     isFormUrlEncoded,
-    returnRequestConfigWithoutExecution
+    returnRequestConfigWithoutExecution,
+    options
   });
 }
 
@@ -145,6 +146,7 @@ async function validateConnectionKey(
  * @param isFormData - Whether to execute the action as a form data request
  * @param isFormUrlEncoded - Whether to execute the action as a form urlencoded request
  * @param returnRequestConfigWithoutExecution - Whether to return request config without executing
+ * @param options - The options for the Pica client
  * @returns The response from the passthrough request
  */
 async function executePassthrough({
@@ -159,7 +161,8 @@ async function executePassthrough({
   headers,
   isFormData,
   isFormUrlEncoded,
-  returnRequestConfigWithoutExecution
+  returnRequestConfigWithoutExecution,
+  options
 }: ExecutePassthroughParams): Promise<ExecuteActionResponse> {
   try {
     const allHeaders = {
@@ -169,6 +172,7 @@ async function executePassthrough({
       "x-pica-action-id": actionId,
       ...(isFormData ? { "Content-Type": "multipart/form-data" } : {}),
       ...(isFormUrlEncoded ? { "Content-Type": "application/x-www-form-urlencoded" } : {}),
+      ...options?.headers,
       ...headers
     };
 

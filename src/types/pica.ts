@@ -7,6 +7,8 @@
  * @author Pica
  */
 
+import { PicaOptions } from "./client";
+
 export interface Connector {
   id: number;
   name: string;
@@ -147,4 +149,5 @@ export interface ExecutePassthroughParams {
   isFormData?: boolean;
   isFormUrlEncoded?: boolean;
   returnRequestConfigWithoutExecution?: boolean;
+  options?: PicaOptions;
 }
