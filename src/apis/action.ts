@@ -193,7 +193,11 @@ export async function getActionsKnowledge({
           updatedKnowledge = replaceBaseUrlInKnowledge(updatedKnowledge, actionKnowledge.baseUrl, passthroughUrl);
         }
 
-        knowledgeMap[systemId] = updatedKnowledge;
+        knowledgeMap[systemId] = {
+          title: actionKnowledge.title,
+          knowledge: updatedKnowledge,
+          platform: actionKnowledge.connectionPlatform
+        };
       }
     } catch (error) {
       console.error(`Error fetching knowledge for action '${systemId}':`, error);

@@ -40,7 +40,11 @@ export const getActionsKnowledgeSchema = z.object({
 
 export type GetActionsKnowledgeParams = z.infer<typeof getActionsKnowledgeSchema>;
 
-export const ActionsKnowledgeResponseSchema = z.record(z.string(), z.string());
+export const ActionsKnowledgeResponseSchema = z.record(z.string(), z.object({
+  title: z.string(),
+  knowledge: z.string(),
+  platform: z.string()
+}));
 
 export const SEARCH_PLATFORM_ACTIONS_TOOL_CONFIG = {
   name: "searchPlatformActions",

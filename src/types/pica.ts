@@ -107,7 +107,11 @@ export interface ActionKnowledge {
 }
 
 export interface ActionsKnowledgeResponse {
-  [systemId: string]: string;
+  [systemId: string]: {
+    title: string;
+    knowledge: string;
+    platform: string;
+  };
 }
 
 export interface RequestConfig {
@@ -122,6 +126,7 @@ export interface ExecuteActionResponseSuccess {
   success: boolean;
   responseData?: any;
   requestConfig: RequestConfig;
+  platform?: string;
 }
 
 export interface ExecuteActionErrorResponse {
@@ -132,6 +137,7 @@ export interface ExecuteActionErrorResponse {
 export interface ExecuteActionConfigResponse {
   executed: boolean;
   requestConfig: RequestConfig;
+  platform?: string;
 }
 
 export type ExecuteActionResponse = ExecuteActionResponseSuccess | ExecuteActionErrorResponse | ExecuteActionConfigResponse;

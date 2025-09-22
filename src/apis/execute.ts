@@ -106,7 +106,8 @@ export async function executeAction({
     isFormData,
     isFormUrlEncoded,
     returnRequestConfigWithoutExecution,
-    options
+    options,
+    platform: action.connectionPlatform
   });
 }
 
@@ -162,8 +163,9 @@ async function executePassthrough({
   isFormData,
   isFormUrlEncoded,
   returnRequestConfigWithoutExecution,
-  options
-}: ExecutePassthroughParams): Promise<ExecuteActionResponse> {
+  options,
+  platform
+}: ExecutePassthroughParams & { platform: string }): Promise<ExecuteActionResponse> {
   try {
     const allHeaders = {
       "Content-Type": "application/json",
@@ -238,7 +240,8 @@ async function executePassthrough({
 
       return {
         executed: false,
-        requestConfig
+        requestConfig,
+        platform
       };
     }
 
@@ -253,7 +256,8 @@ async function executePassthrough({
           ...requestConfig.headers,
           "x-pica-secret": "****REDACTED****"
         }
-      }
+      },
+      platform
     };
   } catch (error) {
     console.error("Error executing passthrough request:", error);

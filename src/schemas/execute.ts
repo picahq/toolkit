@@ -32,7 +32,8 @@ export const ExecuteActionResponseSchema = z.union([
       headers: z.record(z.string(), z.any()),
       params: z.record(z.string(), z.any()).optional(),
       data: z.any().optional()
-    })
+    }),
+    platform: z.string().optional()
   }),
   z.object({
     success: z.boolean(),
@@ -46,7 +47,8 @@ export const ExecuteActionResponseSchema = z.union([
       headers: z.record(z.string(), z.any()),
       params: z.record(z.string(), z.any()).optional(),
       data: z.any().optional()
-    })
+    }),
+    platform: z.string().optional()
   })
 ]);
 
