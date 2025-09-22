@@ -27,14 +27,14 @@ export const ConnectionReferenceSchema = z.object({
   key: ConnectionKeySchema,
 });
 
-export const listPicaIntegrationsSchema = z.object({});
+export const listPicaConnectionsSchema = z.object({});
 
-export type ListPicaIntegrationsParams = z.infer<typeof listPicaIntegrationsSchema>;
+export type listPicaConnectionsParams = z.infer<typeof listPicaConnectionsSchema>;
 
-export const LIST_PICA_INTEGRATIONS_TOOL_CONFIG = {
+export const LIST_PICA_CONNECTIONS_TOOL_CONFIG = {
   name: "listPicaConnections",
   description: "List all connected integrations in the user's Pica account. IMPORTANT: Keys are opaque identifiers and must be shown VERBATIM. Do NOT drop prefixes (e.g., 'test::'). When summarizing, include the `fullKey` exactly as returned.",
-  schema: listPicaIntegrationsSchema,
+  schema: listPicaConnectionsSchema,
   outputSchema: z.array(ConnectionReferenceSchema)
 };
 

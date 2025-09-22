@@ -15,9 +15,9 @@ import {
   pluralize
 } from "../utils";
 
-const INTEGRATIONS_TOOL_PLACEHOLDER = '{{LIST_PICA_INTEGRATIONS_TOOL_CONFIG}}';
+const INTEGRATIONS_TOOL_PLACEHOLDER = '{{LIST_PICA_CONNECTIONS_TOOL_CONFIG}}';
 
-const LIST_PICA_INTEGRATIONS_TOOL_CONFIG = `
+const LIST_PICA_CONNECTIONS_TOOL_CONFIG = `
 Tool: **listPicaConnections** - A tool to list user's connected integrations
   - Shows available platforms and their connection keys
   - Use connection keys EXACTLY as provided (including prefixes like 'test::')
@@ -107,7 +107,7 @@ export const generateDefaultSystemPrompt = (connectors?: string[], actions?: str
   const shouldShowAllConnectors = isInitializingWithAllConnectors(connectors);
   const shouldShowAllActions = isInitializingWithAllActions(actions);
 
-  const toolConfig = shouldShowAllConnectors ? LIST_PICA_INTEGRATIONS_TOOL_CONFIG : "";
+  const toolConfig = shouldShowAllConnectors ? LIST_PICA_CONNECTIONS_TOOL_CONFIG : "";
   let systemPrompt = DEFAULT_SYSTEM_PROMPT.replace(INTEGRATIONS_TOOL_PLACEHOLDER, toolConfig);
 
   if (!shouldShowAllConnectors && connectors?.length) {

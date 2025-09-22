@@ -23,7 +23,7 @@ import { getAvailableConnectors } from "./apis/available-connectors";
 import { generateDefaultSystemPrompt } from "./prompts/default";
 import { generateKnowledgeAgentSystemPrompt } from "./prompts/knowledge";
 import {
-  LIST_PICA_INTEGRATIONS_TOOL_CONFIG,
+  LIST_PICA_CONNECTIONS_TOOL_CONFIG,
   SEARCH_PLATFORM_ACTIONS_TOOL_CONFIG,
   GET_ACTIONS_KNOWLEDGE_TOOL_CONFIG,
   EXECUTE_ACTION_TOOL_CONFIG,
@@ -169,11 +169,11 @@ export class Pica {
 
     // Knowledge agents don't need connection management tools
     if (!this.options?.knowledgeAgent && isInitializingWithAllConnectors(this.options?.connectors)) {
-      tools.listPicaIntegrations = tool({
-        name: LIST_PICA_INTEGRATIONS_TOOL_CONFIG.name,
-        description: LIST_PICA_INTEGRATIONS_TOOL_CONFIG.description,
-        inputSchema: LIST_PICA_INTEGRATIONS_TOOL_CONFIG.schema,
-        outputSchema: LIST_PICA_INTEGRATIONS_TOOL_CONFIG.outputSchema,
+      tools.listPicaConnections = tool({
+        name: LIST_PICA_CONNECTIONS_TOOL_CONFIG.name,
+        description: LIST_PICA_CONNECTIONS_TOOL_CONFIG.description,
+        inputSchema: LIST_PICA_CONNECTIONS_TOOL_CONFIG.schema,
+        outputSchema: LIST_PICA_CONNECTIONS_TOOL_CONFIG.outputSchema,
         execute: async (): Promise<ConnectionReference[]> => {
           const connections = await listConnections({
             baseUrl: this.baseUrl,

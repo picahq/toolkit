@@ -161,18 +161,18 @@ describe("Pica", () => {
       expect(tools).toHaveProperty("execute");
     });
 
-    it("should include listPicaIntegrations when using wildcard connectors", () => {
+    it("should include listPicaConnections when using wildcard connectors", () => {
       const pica = new Pica(mockSecret, { connectors: ["*"] });
       const tools = pica.tools();
 
-      expect(tools).toHaveProperty("listPicaIntegrations");
+      expect(tools).toHaveProperty("listPicaConnections");
     });
 
-    it("should not include listPicaIntegrations when using specific connectors", () => {
+    it("should not include listPicaConnections when using specific connectors", () => {
       const pica = new Pica(mockSecret, { connectors: ["specific-connector"] });
       const tools = pica.tools();
 
-      expect(tools).not.toHaveProperty("listPicaIntegrations");
+      expect(tools).not.toHaveProperty("listPicaConnections");
     });
 
     it("should load knowledge agent execute tool when knowledgeAgent is true", () => {
@@ -182,7 +182,7 @@ describe("Pica", () => {
       expect(tools).toHaveProperty("execute");
       expect(tools).toHaveProperty("searchPlatformActions");
       expect(tools).toHaveProperty("getActionsKnowledge");
-      expect(tools).not.toHaveProperty("listPicaIntegrations");
+      expect(tools).not.toHaveProperty("listPicaConnections");
 
       const executeToolDescription = tools.execute.description;
       expect(executeToolDescription).toContain("Generate request configuration for an action without executing it");
@@ -196,7 +196,7 @@ describe("Pica", () => {
       expect(tools).toHaveProperty("execute");
       expect(tools).toHaveProperty("searchPlatformActions");
       expect(tools).toHaveProperty("getActionsKnowledge");
-      expect(tools).toHaveProperty("listPicaIntegrations");
+      expect(tools).toHaveProperty("listPicaConnections");
 
       const executeToolDescription = tools.execute.description;
       expect(executeToolDescription).toContain("Execute an action on a connected platform");
@@ -210,7 +210,7 @@ describe("Pica", () => {
       expect(tools).toHaveProperty("execute");
       expect(tools).toHaveProperty("searchPlatformActions");
       expect(tools).toHaveProperty("getActionsKnowledge");
-      expect(tools).toHaveProperty("listPicaIntegrations");
+      expect(tools).toHaveProperty("listPicaConnections");
 
       const executeToolDescription = tools.execute.description;
       expect(executeToolDescription).toContain("Execute an action on a connected platform");

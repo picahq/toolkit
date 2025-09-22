@@ -9,7 +9,7 @@ import {
   searchPlatformActionsSchema,
   getActionsKnowledgeSchema,
   executeActionSchema,
-  listPicaIntegrationsSchema,
+  listPicaConnectionsSchema,
 } from "../src/schemas";
 
 describe("Schemas", () => {
@@ -178,11 +178,11 @@ describe("Schemas", () => {
     });
   });
 
-  describe("listPicaIntegrationsSchema", () => {
+  describe("listPicaConnectionsSchema", () => {
     it("should validate empty object", () => {
       const validInput = {};
 
-      const result = listPicaIntegrationsSchema.safeParse(validInput);
+      const result = listPicaConnectionsSchema.safeParse(validInput);
       expect(result.success).toBe(true);
       if (result.success) {
         expect(result.data).toEqual({});
@@ -193,7 +193,7 @@ describe("Schemas", () => {
       const invalidInputs = ["string", 123, true, null, []];
 
       invalidInputs.forEach(input => {
-        const result = listPicaIntegrationsSchema.safeParse(input);
+        const result = listPicaConnectionsSchema.safeParse(input);
         expect(result.success).toBe(false);
       });
     });
@@ -203,7 +203,7 @@ describe("Schemas", () => {
         extraProp: "should be ignored"
       };
 
-      const result = listPicaIntegrationsSchema.safeParse(inputWithExtra);
+      const result = listPicaConnectionsSchema.safeParse(inputWithExtra);
       expect(result.success).toBe(true);
       if (result.success) {
         expect(result.data).toEqual({});
