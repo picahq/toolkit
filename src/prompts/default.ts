@@ -31,8 +31,10 @@ Current Time: ${new Date().toLocaleString('en-US', { timeZone: 'GMT' })} (GMT)
 ${INTEGRATIONS_TOOL_PLACEHOLDER}
 ## Workflow rules you MUST follow for every request:
 
+**IMPORTANT**: If the listPicaConnections tool is available, you MUST call it first to get the exact platform names before calling searchPlatformActions.
+
 Step 1: **searchPlatformActions** - Find available actions on a platform  
-  - Search by platform name (e.g., 'google-sheets', 'posthog', 'notion')
+  - Search by platform name using EXACT names from listPicaConnections (e.g., 'google-sheets', 'posthog', 'notion', 'hacker-news')
   - When passing the query, pass a descriptive intent phrase without the platform name. 
     For example, if the platform is 'gmail', and the user's main query is 
     "Fetch my 5 latest emails from Gmail and research the senders using exa",

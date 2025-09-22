@@ -189,6 +189,21 @@ describe("Pica", () => {
       expect(executeToolDescription).not.toContain("Execute an action on a connected platform");
     });
 
+    it("should include listPicaIntegrations tool when knowledgeAgent is true", () => {
+      const pica = new Pica(mockSecret, { knowledgeAgent: true });
+      const tools = pica.tools();
+
+      expect(tools).toHaveProperty("listPicaIntegrations");
+      expect(tools.listPicaIntegrations.description).toContain("List all available Pica integrations/platforms");
+    });
+
+    it("should not include listPicaIntegrations tool when knowledgeAgent is false", () => {
+      const pica = new Pica(mockSecret, { knowledgeAgent: false, actions: ["*"], connectors: ["*"] });
+      const tools = pica.tools();
+
+      expect(tools).not.toHaveProperty("listPicaIntegrations");
+    });
+
     it("should load regular execute tool when knowledgeAgent is false", () => {
       const pica = new Pica(mockSecret, { knowledgeAgent: false, actions: ["*"], connectors: ["*"] });
       const tools = pica.tools();

@@ -12,6 +12,11 @@ import axios from "axios";
 import { PicaOptions, Connector } from "../types";
 import { paginateResults } from "../utils";
 
+export interface PicaIntegration {
+  name: string;
+  platform: string;
+}
+
 const GET_AVAILABLE_CONNECTORS_URL = "/v1/available-connectors";
 
 interface GetAvailableConnectorsParams {
@@ -53,4 +58,24 @@ export async function getAvailableConnectors({
     console.error("Error fetching available connectors:", error);
     throw error;
   }
+}
+
+/**
+ * Get available Pica integrations with simplified response
+ * @param baseUrl - The base URL of the Pica API
+ * @param secret - The Pica API key
+ * @param options - The options for the Pica client
+ * @returns Simplified list of integrations with name and platform
+ */
+export async function listPicaIntegrations({
+  baseUrl,
+  secret,
+  options,
+}: GetAvailableConnectorsParams): Promise<PicaIntegration[]> {
+  const connectors = await getAvailableConnectors({ baseUrl, secret, options });
+
+  return connectors.map(connector => ({
+    name: connector.name,
+    platform: connector.platform
+  }));
 }

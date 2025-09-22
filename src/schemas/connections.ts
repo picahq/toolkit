@@ -54,3 +54,19 @@ export const PROMPT_TO_CONNECT_INTEGRATION_TOOL_CONFIG = {
   schema: promptToConnectIntegrationSchema,
   outputSchema: PromptToConnectIntegrationResponseSchema
 };
+
+export const listPicaIntegrationsSchema = z.object({});
+
+export type ListPicaIntegrationsParams = z.infer<typeof listPicaIntegrationsSchema>;
+
+export const PicaIntegrationSchema = z.object({
+  name: z.string(),
+  platform: z.string()
+});
+
+export const LIST_PICA_INTEGRATIONS_TOOL_CONFIG = {
+  name: "listPicaIntegrations",
+  description: "List all available Pica integrations/platforms. Use this to get the exact platform names before searching for actions.",
+  schema: listPicaIntegrationsSchema,
+  outputSchema: z.array(PicaIntegrationSchema)
+};

@@ -19,11 +19,12 @@ import {
   getActionsKnowledge
 } from "./apis/action";
 import { getAvailableActions } from "./apis/available-actions";
-import { getAvailableConnectors } from "./apis/available-connectors";
+import { getAvailableConnectors, listPicaIntegrations, PicaIntegration } from "./apis/available-connectors";
 import { generateDefaultSystemPrompt } from "./prompts/default";
 import { generateKnowledgeAgentSystemPrompt } from "./prompts/knowledge";
 import {
   LIST_PICA_CONNECTIONS_TOOL_CONFIG,
+  LIST_PICA_INTEGRATIONS_TOOL_CONFIG,
   SEARCH_PLATFORM_ACTIONS_TOOL_CONFIG,
   GET_ACTIONS_KNOWLEDGE_TOOL_CONFIG,
   EXECUTE_ACTION_TOOL_CONFIG,
@@ -166,6 +167,23 @@ export class Pica {
 
   tools(): ToolSet {
     const tools: ToolSet = {};
+
+    // Knowledge agents get the integrations discovery tool
+    if (this.options?.knowledgeAgent) {
+      tools.listPicaIntegrations = tool({
+        name: LIST_PICA_INTEGRATIONS_TOOL_CONFIG.name,
+        description: LIST_PICA_INTEGRATIONS_TOOL_CONFIG.description,
+        inputSchema: LIST_PICA_INTEGRATIONS_TOOL_CONFIG.schema,
+        outputSchema: LIST_PICA_INTEGRATIONS_TOOL_CONFIG.outputSchema,
+        execute: async (): Promise<PicaIntegration[]> => {
+          return await listPicaIntegrations({
+            baseUrl: this.baseUrl,
+            secret: this.secret,
+            options: this.options
+          });
+        }
+      });
+    }
 
     // Knowledge agents don't need connection management tools
     if (!this.options?.knowledgeAgent && isInitializingWithAllConnectors(this.options?.connectors)) {
