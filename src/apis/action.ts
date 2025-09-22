@@ -55,6 +55,12 @@ export async function searchPlatformActions({
   url.searchParams.set('query', query);
   url.searchParams.set('limit', '5');
 
+  if (options?.knowledgeAgent) {
+    url.searchParams.set('knowledgeAgent', 'true');
+  } else {
+    url.searchParams.set('executeAgent', 'true');
+  }
+
   try {
     const response = await axios.get(url.toString(), {
       headers: {
