@@ -37,7 +37,8 @@ export const ExecuteActionResponseSchema = z.union([
   }),
   z.object({
     success: z.boolean(),
-    error: z.string().optional()
+    error: z.string().optional(),
+    platform: z.string().optional()
   }),
   z.object({
     executed: z.boolean(),

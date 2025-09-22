@@ -132,6 +132,7 @@ export interface ExecuteActionResponseSuccess {
 export interface ExecuteActionErrorResponse {
   success: boolean;
   error?: string;
+  platform?: string;
 }
 
 export interface ExecuteActionConfigResponse {

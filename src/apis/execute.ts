@@ -264,7 +264,8 @@ async function executePassthrough({
 
     return {
       success: false,
-      error: JSON.stringify(error)
+      error: JSON.stringify(error),
+      platform
     }
   }
 }
