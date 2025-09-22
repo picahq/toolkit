@@ -13,6 +13,7 @@ export const LOG_MESSAGES = {
   KNOWLEDGE_AGENT_ACTIONS_ACCESS: "[Pica] Agent has access to all actions for knowledge discovery",
   KNOWLEDGE_AGENT_EXECUTE_CONFIG: "[Pica] Execute tool returns request configurations without execution",
   KNOWLEDGE_AGENT_CONNECTIONS_DISABLED: "[Pica] Connection management tools are disabled in knowledge mode",
+  LIST_PICA_INTEGRATIONS_ENABLED: "[Pica] The `listPicaIntegrations` tool is enabled for platform discovery",
 
   // Standard Mode - Connectors
   ALL_CONNECTORS_ACCESS: "[Pica] Initialized client with access to all connectors",

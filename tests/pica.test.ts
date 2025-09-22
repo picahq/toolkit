@@ -73,6 +73,9 @@ describe("Pica", () => {
       expect(consoleSpy).toHaveBeenCalledWith(
         expect.stringContaining(LOG_MESSAGES.KNOWLEDGE_AGENT_INITIALIZED)
       );
+      expect(consoleSpy).toHaveBeenCalledWith(
+        expect.stringContaining(LOG_MESSAGES.LIST_PICA_INTEGRATIONS_ENABLED)
+      );
     });
 
     it("should not log standard initialization when knowledgeAgent is true", () => {

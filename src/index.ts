@@ -69,6 +69,7 @@ export class Pica {
       console.log(chalk.yellow(LOG_MESSAGES.KNOWLEDGE_AGENT_ACTIONS_ACCESS));
       console.log(chalk.yellow(LOG_MESSAGES.KNOWLEDGE_AGENT_EXECUTE_CONFIG));
       console.log(chalk.gray(LOG_MESSAGES.KNOWLEDGE_AGENT_CONNECTIONS_DISABLED));
+      console.log(chalk.magenta(LOG_MESSAGES.LIST_PICA_INTEGRATIONS_ENABLED));
 
       if (this.options?.authkit) {
         console.log(chalk.blue(LOG_MESSAGES.AUTHKIT_ENABLED));
