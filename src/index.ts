@@ -28,12 +28,10 @@ import {
   SEARCH_PLATFORM_ACTIONS_TOOL_CONFIG,
   GET_ACTIONS_KNOWLEDGE_TOOL_CONFIG,
   EXECUTE_ACTION_TOOL_CONFIG,
-  KNOWLEDGE_AGENT_EXECUTE_ACTION_TOOL_CONFIG,
   PROMPT_TO_CONNECT_INTEGRATION_TOOL_CONFIG,
   SearchPlatformActionsParams,
   GetActionsKnowledgeParams,
   ExecuteActionParams,
-  KnowledgeAgentExecuteActionParams,
   PromptToConnectIntegrationParams
 } from "./schemas";
 import {
@@ -245,32 +243,8 @@ export class Pica {
       }
     });
 
-    if (this.options?.knowledgeAgent) {
-      tools.execute = tool({
-        name: KNOWLEDGE_AGENT_EXECUTE_ACTION_TOOL_CONFIG.name,
-        description: KNOWLEDGE_AGENT_EXECUTE_ACTION_TOOL_CONFIG.description,
-        inputSchema: KNOWLEDGE_AGENT_EXECUTE_ACTION_TOOL_CONFIG.schema,
-        outputSchema: KNOWLEDGE_AGENT_EXECUTE_ACTION_TOOL_CONFIG.outputSchema,
-        execute: async (params: KnowledgeAgentExecuteActionParams): Promise<ExecuteActionResponse> => {
-          const result = await executeAction({
-            baseUrl: this.baseUrl,
-            secret: this.secret,
-            actionSystemId: params.actionSystemId,
-            connectionKey: params.connectionKey,
-            data: params.data,
-            pathVariables: params.pathVariables,
-            queryParams: params.queryParams,
-            headers: params.headers,
-            isFormData: params.isFormData,
-            isFormUrlEncoded: params.isFormUrlEncoded,
-            returnRequestConfigWithoutExecution: true,
-            options: this.options
-          });
-
-          return result;
-        }
-      });
-    } else {
+    // Only add execute tool in standard mode (not in knowledge agent mode)
+    if (!this.options?.knowledgeAgent) {
       tools.execute = tool({
         name: EXECUTE_ACTION_TOOL_CONFIG.name,
         description: EXECUTE_ACTION_TOOL_CONFIG.description,
@@ -288,7 +262,6 @@ export class Pica {
             headers: params.headers,
             isFormData: params.isFormData,
             isFormUrlEncoded: params.isFormUrlEncoded,
-            returnRequestConfigWithoutExecution: false,
             options: this.options
           });
 

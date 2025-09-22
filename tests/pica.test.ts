@@ -178,18 +178,14 @@ describe("Pica", () => {
       expect(tools).not.toHaveProperty("listPicaConnections");
     });
 
-    it("should load knowledge agent execute tool when knowledgeAgent is true", () => {
+    it("should not include execute tool when knowledgeAgent is true", () => {
       const pica = new Pica(mockSecret, { knowledgeAgent: true });
       const tools = pica.tools();
 
-      expect(tools).toHaveProperty("execute");
+      expect(tools).not.toHaveProperty("execute");
       expect(tools).toHaveProperty("searchPlatformActions");
       expect(tools).toHaveProperty("getActionsKnowledge");
       expect(tools).not.toHaveProperty("listPicaConnections");
-
-      const executeToolDescription = tools.execute.description;
-      expect(executeToolDescription).toContain("Generate request configuration for an action without executing it");
-      expect(executeToolDescription).not.toContain("Execute an action on a connected platform");
     });
 
     it("should include listPicaIntegrations tool when knowledgeAgent is true", () => {
@@ -264,7 +260,7 @@ describe("Pica", () => {
       const tools = pica.tools();
 
       expect(tools).toHaveProperty("promptToConnectIntegration");
-      expect(tools).toHaveProperty("execute");
+      expect(tools).not.toHaveProperty("execute");
       expect(tools).toHaveProperty("searchPlatformActions");
       expect(tools).toHaveProperty("getActionsKnowledge");
     });

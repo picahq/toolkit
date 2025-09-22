@@ -135,13 +135,7 @@ export interface ExecuteActionErrorResponse {
   platform?: string;
 }
 
-export interface ExecuteActionConfigResponse {
-  executed: boolean;
-  requestConfig: RequestConfig;
-  platform?: string;
-}
-
-export type ExecuteActionResponse = ExecuteActionResponseSuccess | ExecuteActionErrorResponse | ExecuteActionConfigResponse;
+export type ExecuteActionResponse = ExecuteActionResponseSuccess | ExecuteActionErrorResponse;
 
 export interface ExecutePassthroughParams {
   baseUrl: string;
@@ -155,6 +149,5 @@ export interface ExecutePassthroughParams {
   headers?: Record<string, any>;
   isFormData?: boolean;
   isFormUrlEncoded?: boolean;
-  returnRequestConfigWithoutExecution?: boolean;
   options?: PicaOptions;
 }

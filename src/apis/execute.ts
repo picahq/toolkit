@@ -33,7 +33,6 @@ interface ExecuteActionParams {
   headers?: Record<string, any>;
   isFormData?: boolean;
   isFormUrlEncoded?: boolean;
-  returnRequestConfigWithoutExecution?: boolean;
   options?: PicaOptions;
 }
 
@@ -49,7 +48,6 @@ interface ExecuteActionParams {
  * @param headers - The headers to execute the action with
  * @param isFormData - Whether to execute the action as a form data request
  * @param isFormUrlEncoded - Whether to execute the action as a form urlencoded request
- * @param returnRequestConfigWithoutExecution - Whether to return request config without executing
  * @param options - The options for the Pica client
  * @returns The response from the action
  */
@@ -64,7 +62,6 @@ export async function executeAction({
   headers,
   isFormData,
   isFormUrlEncoded,
-  returnRequestConfigWithoutExecution,
   options,
 }: ExecuteActionParams): Promise<ExecuteActionResponse> {
   await validateConnectionKey(baseUrl, secret, connectionKey, options);
@@ -105,7 +102,6 @@ export async function executeAction({
     headers,
     isFormData,
     isFormUrlEncoded,
-    returnRequestConfigWithoutExecution,
     options,
     platform: action.connectionPlatform
   });
@@ -146,7 +142,6 @@ async function validateConnectionKey(
  * @param headers - The headers to execute the action with
  * @param isFormData - Whether to execute the action as a form data request
  * @param isFormUrlEncoded - Whether to execute the action as a form urlencoded request
- * @param returnRequestConfigWithoutExecution - Whether to return request config without executing
  * @param options - The options for the Pica client
  * @returns The response from the passthrough request
  */
@@ -162,7 +157,6 @@ async function executePassthrough({
   headers,
   isFormData,
   isFormUrlEncoded,
-  returnRequestConfigWithoutExecution,
   options,
   platform
 }: ExecutePassthroughParams & { platform: string }): Promise<ExecuteActionResponse> {
@@ -232,17 +226,6 @@ async function executePassthrough({
       } else {
         requestConfig.data = data;
       }
-    }
-
-    // Return request config without execution if requested
-    if (returnRequestConfigWithoutExecution) {
-      requestConfig.headers['x-pica-secret'] = "YOUR_PICA_SECRET_KEY_HERE";
-
-      return {
-        executed: false,
-        requestConfig,
-        platform
-      };
     }
 
     const response = await axios(requestConfig);
