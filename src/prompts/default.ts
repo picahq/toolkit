@@ -13,7 +13,7 @@ import {
   isInitializingWithAllActions,
   parseConnectionKey,
   pluralize
-} from "../utils";
+} from "../utils/index.js";
 
 const INTEGRATIONS_TOOL_PLACEHOLDER = '{{LIST_PICA_CONNECTIONS_TOOL_CONFIG}}';
 

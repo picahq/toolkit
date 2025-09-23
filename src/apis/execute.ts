@@ -10,15 +10,15 @@
 
 import axios from "axios";
 import FormData from "form-data";
-import { normalizeActionId, resolveTemplateVariables } from "../utils";
-import { listConnections } from "./connections";
-import { getActionSpec } from "./action";
+import { normalizeActionId, resolveTemplateVariables } from "../utils/index.js";
+import { listConnections } from "./connections.js";
+import { getActionSpec } from "./action.js";
 import {
   PicaOptions,
   RequestConfig,
   ExecuteActionResponse,
   ExecutePassthroughParams
-} from "../types";
+} from "../types/index.js";
 
 const PASSTHROUGH_URL = "/v1/passthrough";
 

@@ -24,7 +24,7 @@ npm install @picahq/toolkit
 The Pica ToolKit seamlessly integrates with [Vercel AI SDK](https://ai-sdk.dev/docs/introduction), enabling powerful AI capabilities in your applications. Below is a simple example showing how to implement it in a Vercel Agent with read-only permissions on a Gmail connection.
 
 ```typescript
-import { Pica } from '@picahq/ai';
+import { Pica } from '@picahq/toolkit';
 import { openai } from '@ai-sdk/openai';
 import {
   streamText,

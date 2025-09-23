@@ -9,8 +9,8 @@
  */
 
 import axios from "axios";
-import { PicaOptions, Connector } from "../types";
-import { paginateResults } from "../utils";
+import { PicaOptions, Connector } from "../types/index.js";
+import { paginateResults } from "../utils/index.js";
 
 export interface PicaIntegration {
   name: string;

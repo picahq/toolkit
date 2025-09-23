@@ -15,13 +15,13 @@ import {
   ActionReference,
   ActionKnowledge,
   ActionsKnowledgeResponse,
-} from "../types";
+} from "../types/index.js";
 import {
   isInitializingWithAllActions,
   parseSystemId,
   normalizeActionId,
   replaceBaseUrlInKnowledge
-} from "../utils";
+} from "../utils/index.js";
 
 const SEARCH_ACTIONS_URL = "/v1/available-actions/search";
 const KNOWLEDGE_URL = "/v1/knowledge";

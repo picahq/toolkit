@@ -7,7 +7,7 @@
  * @author Pica
  */
 
-import { PicaOptions } from "./client";
+import { PicaOptions } from "./client.js";
 
 export interface Connector {
   id: number;

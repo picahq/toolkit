@@ -7,7 +7,7 @@
  * @author Pica
  */
 
-import { Environment } from "../types";
+import { Environment } from "../types/index.js";
 
 /**
  * Paginate results from a fetch function

@@ -34,7 +34,7 @@ async function main() {
       model: openai("gpt-4.1"),
       tools: { ...pica.tools() },
       system: systemPrompt,
-      messages: [{ role: "user", content: "What connections do I have access to?" }],
+      prompt: "What connections do I have access to?",
       stopWhen: stepCountIs(25),
     });
 

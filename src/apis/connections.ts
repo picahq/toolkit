@@ -13,11 +13,11 @@ import {
   Connection,
   PicaOptions,
   ConnectionReference
-} from "../types";
+} from "../types/index.js";
 import {
   paginateResults,
   parseConnectionKey
-} from "../utils";
+} from "../utils/index.js";
 
 const GET_CONNECTIONS_URL = "/v1/vault/connections";
 

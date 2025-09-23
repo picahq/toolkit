@@ -1,2 +1,2 @@
-export * from "./client";
-export * from "./pica";
+export * from "./client.js";
+export * from "./pica.js";

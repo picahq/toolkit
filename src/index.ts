@@ -9,19 +9,19 @@
 
 import { tool, ToolSet } from "ai";
 import chalk from "chalk";
-import { executeAction } from "./apis/execute";
+import { executeAction } from "./apis/execute.js";
 import {
   listConnections,
   clean
-} from "./apis/connections";
+} from "./apis/connections.js";
 import {
   searchPlatformActions,
   getActionsKnowledge
-} from "./apis/action";
-import { getAvailableActions } from "./apis/available-actions";
-import { getAvailableConnectors, listPicaIntegrations, PicaIntegration } from "./apis/available-connectors";
-import { generateDefaultSystemPrompt } from "./prompts/default";
-import { generateKnowledgeAgentSystemPrompt } from "./prompts/knowledge";
+} from "./apis/action.js";
+import { getAvailableActions } from "./apis/available-actions.js";
+import { getAvailableConnectors, listPicaIntegrations, PicaIntegration } from "./apis/available-connectors.js";
+import { generateDefaultSystemPrompt } from "./prompts/default.js";
+import { generateKnowledgeAgentSystemPrompt } from "./prompts/knowledge.js";
 import {
   LIST_PICA_CONNECTIONS_TOOL_CONFIG,
   LIST_PICA_INTEGRATIONS_TOOL_CONFIG,
@@ -33,7 +33,7 @@ import {
   GetActionsKnowledgeParams,
   ExecuteActionParams,
   PromptToConnectIntegrationParams
-} from "./schemas";
+} from "./schemas/index.js";
 import {
   PicaOptions,
   Connection,
@@ -43,13 +43,13 @@ import {
   AvailableAction,
   ActionsKnowledgeResponse,
   ExecuteActionResponse
-} from "./types";
+} from "./types/index.js";
 import {
   isInitializingWithAllConnectors,
   isInitializingWithAllActions,
   pluralize,
   LOG_MESSAGES
-} from "./utils";
+} from "./utils/index.js";
 
 export class Pica {
   private secret: string;

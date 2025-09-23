@@ -9,8 +9,8 @@
  */
 
 import axios from "axios";
-import { PicaOptions, AvailableAction } from "../types";
-import { paginateResults } from "../utils";
+import { PicaOptions, AvailableAction } from "../types/index.js";
+import { paginateResults } from "../utils/index.js";
 
 const GET_AVAILABLE_ACTIONS_URL = "/v1/available-actions";
 
