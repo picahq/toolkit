@@ -33,12 +33,14 @@ export const ExecuteActionResponseSchema = z.union([
       params: z.record(z.string(), z.any()).optional(),
       data: z.any().optional()
     }),
-    platform: z.string().optional()
+    platform: z.string().optional(),
+    action: z.string().optional()
   }),
   z.object({
     success: z.boolean(),
     error: z.string().optional(),
-    platform: z.string().optional()
+    platform: z.string().optional(),
+    action: z.string().optional()
   })
 ]);
 

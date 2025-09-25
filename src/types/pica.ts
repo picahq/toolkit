@@ -127,12 +127,14 @@ export interface ExecuteActionResponseSuccess {
   responseData?: any;
   requestConfig: RequestConfig;
   platform?: string;
+  action?: string;
 }
 
 export interface ExecuteActionErrorResponse {
   success: boolean;
   error?: string;
   platform?: string;
+  action?: string;
 }
 
 export type ExecuteActionResponse = ExecuteActionResponseSuccess | ExecuteActionErrorResponse;
@@ -150,4 +152,5 @@ export interface ExecutePassthroughParams {
   isFormData?: boolean;
   isFormUrlEncoded?: boolean;
   options?: PicaOptions;
+  actionTitle?: string;
 }

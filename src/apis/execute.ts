@@ -103,7 +103,8 @@ export async function executeAction({
     isFormData,
     isFormUrlEncoded,
     options,
-    platform: action.connectionPlatform
+    platform: action.connectionPlatform,
+    actionTitle: action.title
   });
 }
 
@@ -158,7 +159,8 @@ async function executePassthrough({
   isFormData,
   isFormUrlEncoded,
   options,
-  platform
+  platform,
+  actionTitle
 }: ExecutePassthroughParams & { platform: string }): Promise<ExecuteActionResponse> {
   try {
     const allHeaders = {
@@ -240,7 +242,8 @@ async function executePassthrough({
           "x-pica-secret": "****REDACTED****"
         }
       },
-      platform
+      platform,
+      action: actionTitle
     };
   } catch (error) {
     console.error("Error executing passthrough request:", error);
@@ -248,7 +251,8 @@ async function executePassthrough({
     return {
       success: false,
       error: JSON.stringify(error),
-      platform
+      platform,
+      action: actionTitle
     }
   }
 }
