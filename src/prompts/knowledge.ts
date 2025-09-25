@@ -16,6 +16,7 @@ Generate a complete Edge Function prompt in markdown format for integrating with
 Current Time: ${new Date().toLocaleString('en-US', { timeZone: 'GMT' })} (GMT)
 
 You have access to all available actions across all platforms. You can explore any platform's actions and generate prompts without needing actual connections.
+To view all available actions, call listPicaIntegrations first. If the platform you need is not in the connected integrations list, inform the user that that platform is not supported via Pica.
 
 **IMPORTANT**: You are in Knowledge Agent mode - you can only retrieve knowledge and generate prompts, never execute actual API calls.
 

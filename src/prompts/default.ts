@@ -31,7 +31,7 @@ Current Time: ${new Date().toLocaleString('en-US', { timeZone: 'GMT' })} (GMT)
 ${INTEGRATIONS_TOOL_PLACEHOLDER}
 ## Workflow rules you MUST follow for every request:
 
-**IMPORTANT**: If the listPicaConnections tool is available, you MUST call it first to get the exact platform names before calling searchPlatformActions.
+**IMPORTANT**: If the listPicaConnections tool is available, you MUST call it first to get the exact platform names before calling searchPlatformActions. If the platform you need is not in the connected integrations list, inform the user that they need to connect that integration first - do not attempt to use a different platform.
 
 Step 1: **searchPlatformActions** - Find available actions on a platform  
   - Search by platform name using EXACT names from listPicaConnections (e.g., 'google-sheets', 'posthog', 'notion', 'hacker-news')

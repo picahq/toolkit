@@ -1,6 +1,6 @@
 {
   "name": "@picahq/toolkit",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Pica tools for the Vercel AI SDK",
   "type": "module",
   "main": "dist/index.js",
