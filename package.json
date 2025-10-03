@@ -1,6 +1,6 @@
 {
   "name": "@picahq/toolkit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pica tools for the Vercel AI SDK",
   "type": "module",
   "main": "dist/index.js",
@@ -38,7 +38,7 @@
     "tool",
     "integration"
   ],
-  "homepage": "https://picaos.com",
+  "homepage": "https://docs.picaos.com/toolkit",
   "bugs": {
     "url": "https://github.com/picahq/toolkit/issues"
   },
