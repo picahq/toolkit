@@ -6,6 +6,13 @@
 
 Pica's ToolKit provides enterprise-grade integration capabilities for AI agents built with the Vercel AI SDK. Through Pica's integration layer, agents can seamlessly interact with third-party services and APIs while maintaining enterprise security, compliance, and reliability standards.
 
+## Prerequisites
+
+Before installing ToolKit, you'll need:
+- **Pica Account** - Sign up for a free account [here](https://app.picaos.com)
+- **Vercel AI SDK** - Version 5.0.0 or higher
+- **LLM Provider & API Key** – You'll need an API key from your preferred LLM provider. Supported providers include: OpenAI, Anthropic, Google, xAI, Groq, Mistral, Cohere, and [many more](https://ai-sdk.dev/providers/ai-sdk-providers).
+
 ## Installation
 
 ```bash
@@ -21,7 +28,7 @@ npm install @picahq/toolkit
 
 ## Usage
 
-The Pica ToolKit seamlessly integrates with [Vercel AI SDK](https://ai-sdk.dev/docs/introduction), enabling powerful AI capabilities in your applications. Below is a simple example showing how to implement it in a Vercel Agent with read-only permissions on a Gmail connection.
+The Pica ToolKit seamlessly integrates with [Vercel AI SDK](https://ai-sdk.dev/docs/introduction), enabling powerful AI capabilities in your applications. Below is a simple example of using Pica ToolKit in a Next.js (or similar Edge Function) API route handler, powering a chat UI with read-only permissions on a Gmail connection.
 
 ```typescript
 import { Pica } from '@picahq/toolkit';
@@ -38,13 +45,14 @@ export async function POST(req: Request) {
 
   const pica = new Pica(process.env.PICA_SECRET_KEY!, {
     connectors: ["test::gmail::default::6faf1d3707f846ef89295c836df71c94"],
+    actions: ["*"],
     permissions: "read"
   });
 
   const systemPrompt = pica.systemPrompt;
 
   const result = streamText({
-    model: openai("gpt-4.1"),
+    model: openai("gpt-5"),
     messages: convertToModelMessages(messages),
     tools: {
       ...pica.tools() // Load the Pica ToolKit
@@ -57,7 +65,7 @@ export async function POST(req: Request) {
 }
 ```
 
-> ⭐️ Experience the Pica ToolKit's capabilities firsthand through our interactive demo chat application [here](https://github.com/picahq/toolkit-demo)
+> ⭐️ Experience the Pica ToolKit's capabilities firsthand through our interactive chat playground directly in the [Pica dashboard](https://app.picaos.com/connections)
 
 
 ## What can Pica do?
@@ -91,6 +99,10 @@ Here are some powerful examples use cases:
 - Convert meeting audio to text using ElevenLabs
 - Conduct market research via Tavily/SerpApi integrations
 - Perform sentiment analysis on support interactions
+
+## Documentation
+
+For more detailed documentation, please visit our [documentation site](https://docs.picaos.com/toolkit).
 
 ## License
 
