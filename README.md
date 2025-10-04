@@ -102,7 +102,7 @@ Here are some powerful examples use cases:
 
 ## Documentation
 
-For more detailed documentation, please visit our [documentation site](https://docs.picaos.com/toolkit).
+For more detailed documentation, please visit our [documentation site](https://docs.picaos.com/toolkit/vercel-ai-sdk).
 
 ## License
 
