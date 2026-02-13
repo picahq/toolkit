@@ -248,9 +248,19 @@ async function executePassthrough({
   } catch (error) {
     console.error("Error executing passthrough request:", error);
 
+    const errorInfo = axios.isAxiosError(error) && error.response
+      ? {
+          status: error.response.status,
+          message: error.message,
+          data: error.response.data,
+        }
+      : error instanceof Error
+        ? error.message
+        : String(error);
+
     return {
       success: false,
-      error: JSON.stringify(error),
+      error: errorInfo,
       platform,
       action: actionTitle
     }

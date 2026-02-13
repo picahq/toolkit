@@ -132,7 +132,7 @@ export interface ExecuteActionResponseSuccess {
 
 export interface ExecuteActionErrorResponse {
   success: boolean;
-  error?: string;
+  error?: string | { status: number; message: string; data: unknown };
   platform?: string;
   action?: string;
 }
